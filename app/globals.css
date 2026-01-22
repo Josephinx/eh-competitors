@@ -1,0 +1,264 @@
+/* Import Inter font - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme variables */
+@layer base {
+  :root {
+    /* Light theme */
+    --color-primary: #F26522;
+    --color-primary-hover: #E55A1B;
+    --color-primary-light: rgba(242, 101, 34, 0.1);
+    
+    --color-bg-app: #F5F5F5;
+    --color-bg-sidebar: #FFFFFF;
+    --color-bg-card: #FFFFFF;
+    --color-bg-card-hover: #F9F9F9;
+    --color-bg-input: #FFFFFF;
+    --color-bg-modal: #FFFFFF;
+    --color-bg-login: #F5F5F5;
+    
+    --color-text-primary: #1A1A1A;
+    --color-text-secondary: #666666;
+    --color-text-muted: #999999;
+    --color-text-inverse: #FFFFFF;
+    
+    --color-border: #E5E5E5;
+    --color-border-light: #D4D4D4;
+    --color-border-focus: #F26522;
+    
+    --color-matrix-row-alt: rgba(0, 0, 0, 0.02);
+    --color-matrix-header: #F9F9F9;
+    --color-matrix-priority: rgba(242, 101, 34, 0.08);
+    
+    --color-shadow: rgba(0, 0, 0, 0.08);
+    --color-shadow-heavy: rgba(0, 0, 0, 0.15);
+  }
+  
+  .dark {
+    /* Dark theme */
+    --color-primary: #F26522;
+    --color-primary-hover: #E55A1B;
+    --color-primary-light: rgba(242, 101, 34, 0.1);
+    
+    --color-bg-app: #141414;
+    --color-bg-sidebar: #1A1A1A;
+    --color-bg-card: #242424;
+    --color-bg-card-hover: #2A2A2A;
+    --color-bg-input: #1E1E1E;
+    --color-bg-modal: #1E1E1E;
+    --color-bg-login: #D9D9D9;
+    
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #A0A0A0;
+    --color-text-muted: #666666;
+    --color-text-inverse: #141414;
+    
+    --color-border: #333333;
+    --color-border-light: #444444;
+    --color-border-focus: #F26522;
+    
+    --color-matrix-row-alt: rgba(255, 255, 255, 0.02);
+    --color-matrix-header: #1A1A1A;
+    --color-matrix-priority: rgba(242, 101, 34, 0.1);
+    
+    --color-shadow: rgba(0, 0, 0, 0.3);
+    --color-shadow-heavy: rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Base styles */
+@layer base {
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    @apply bg-bg-app text-text-primary antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  * {
+    @apply border-border;
+  }
+}
+
+/* Component classes */
+@layer components {
+  /* Buttons - Enhanced with better feedback */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-hover shadow-sm hover:shadow-md active:scale-[0.98];
+  }
+  
+  .btn-secondary {
+    @apply btn bg-bg-card text-text-primary border border-border hover:bg-bg-card-hover hover:border-border-light active:scale-[0.98];
+  }
+  
+  .btn-outline {
+    @apply btn bg-transparent text-primary border border-primary hover:bg-primary-light active:scale-[0.98];
+  }
+  
+  .btn-ghost {
+    @apply btn bg-transparent text-text-secondary hover:text-text-primary hover:bg-bg-card-hover;
+  }
+  
+  .btn-icon {
+    @apply p-2 rounded-lg text-text-muted hover:text-text-primary hover:bg-bg-card-hover transition-all duration-150;
+  }
+  
+  /* Inputs - Refined */
+  .input {
+    @apply w-full px-3.5 py-2.5 text-sm bg-bg-input border border-border rounded-lg text-text-primary placeholder:text-text-muted focus:border-border-focus focus:outline-none transition-all duration-150;
+  }
+  
+  .input-login {
+    @apply w-full px-3.5 py-2.5 text-sm bg-white border rounded-lg text-text-inverse placeholder:text-text-muted focus:outline-none transition-all duration-150;
+    border-color: rgba(242, 101, 34, 0.3);
+  }
+  
+  .input-login:focus {
+    border-color: #F26522;
+    box-shadow: 0 0 0 2px rgba(242, 101, 34, 0.2);
+  }
+  
+  /* Cards - Modern with subtle depth */
+  .card {
+    @apply bg-bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-md hover:border-border-light transition-all duration-200;
+  }
+  
+  .card-static {
+    @apply bg-bg-card border border-border rounded-xl p-5;
+  }
+  
+  /* Badges - Refined */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md;
+  }
+  
+  .badge-core {
+    @apply badge bg-tier-core text-white shadow-sm;
+  }
+  
+  .badge-adjacent {
+    @apply badge bg-tier-adjacent text-white shadow-sm;
+  }
+  
+  .badge-contrast {
+    @apply badge bg-transparent text-primary border border-primary;
+  }
+  
+  /* Stat pills - More prominent */
+  .stat-pill {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs text-text-secondary rounded-md border border-border;
+    background-color: var(--color-bg-app);
+  }
+  
+  /* Nav items */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 text-sm text-text-secondary rounded-lg hover:text-text-primary hover:bg-bg-card-hover transition-all duration-150;
+  }
+  
+  .nav-item-active {
+    @apply nav-item text-text-primary bg-bg-card border-l-2 border-primary shadow-sm;
+  }
+  
+  /* Matrix table */
+  .matrix-cell {
+    @apply px-4 py-3.5 text-sm border-b border-border;
+  }
+  
+  .matrix-header {
+    @apply matrix-cell bg-matrix-header font-semibold text-text-secondary sticky top-0 z-sticky;
+  }
+  
+  .matrix-category {
+    @apply matrix-cell bg-bg-sidebar sticky left-0 z-10 font-medium;
+  }
+  
+  .matrix-priority-row {
+    @apply bg-matrix-priority;
+  }
+  
+  /* Page header */
+  .page-header {
+    @apply mb-8;
+  }
+  
+  .page-title {
+    @apply text-2xl font-semibold text-text-primary tracking-tight;
+  }
+  
+  .page-subtitle {
+    @apply text-sm text-text-secondary mt-1.5;
+  }
+  
+  /* Empty state */
+  .empty-state {
+    @apply text-center py-16 px-4;
+  }
+  
+  .empty-state-text {
+    @apply text-text-secondary mb-6;
+  }
+  
+  /* Loading skeleton */
+  .skeleton {
+    @apply animate-pulse bg-bg-card-hover rounded-lg;
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: auto;
+    scrollbar-color: theme('colors.border.DEFAULT') transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: theme('colors.border.light');
+    border-radius: 7px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: theme('colors.text.muted');
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+  /* Fade in animation */
+  .fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
